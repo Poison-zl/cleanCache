@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>清理缓存</title>
+    <link rel="stylesheet" href="../css/element-ui-2.8.2.css">
+    <style>
+        #main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <iframe v-if="page === 1" src="button/index.html" frameborder="0" style="    width: 270px;height: 90px;"></iframe>
+    <div  v-if="page === 1" style="color:green;cursor: pointer" @click="page = 2">高级设置</div>
+    <div  v-if="page === 2">
+        <h3>清除缓存选项</h3>
+        <el-form ref="form" :model="form" label-width="80px">
+            <el-form-item label="清除时间">
+                <el-select v-model="form.time" placeholder="请选择时间段">
+                    <el-option label="1天" value="1"></el-option>
+                    <el-option label="5天" value="5"></el-option>
+                    <el-option label="一个月" value="30"></el-option>
+                    <el-option label="一年" value="365"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="选项">
+                <el-checkbox-group v-model="form.type">
+                    <el-checkbox label="appcache" name="type">应用缓存</el-checkbox>
+                    <el-checkbox label="cache" name="type">浏览器缓存</el-checkbox>
+                    <el-checkbox label="cookies" name="type">cookies</el-checkbox>
+                    <el-checkbox label="passwords" name="type">密码</el-checkbox>
+                    <el-checkbox label="downloads" name="type">下载记录</el-checkbox>
+                    <el-checkbox label="fileSystems" name="type">文件系统</el-checkbox>
+                    <el-checkbox label="formData" name="type">表单数据</el-checkbox>
+                    <el-checkbox label="history" name="type">历史记录</el-checkbox>
+                    <el-checkbox label="indexedDB" name="type">indexedDB</el-checkbox>
+                    <el-checkbox label="localStorage" name="type">本地存储</el-checkbox>
+                    <el-checkbox label="serverBoundCertificates" name="type">服务器证书</el-checkbox>
+                    <el-checkbox label="pluginData" name="type">插件数据</el-checkbox>
+                </el-checkbox-group>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="clear()">清除缓存</el-button>
+                <el-button @click="page = 1">返回</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+
+</div>
+</body>
+<script src="../js/jquery-1.10.2.min.js"></script>                     <!--可以引用jquery文件-->
+<script src="../js/vue.2.5.13.js"></script>
+<script src="../js/element-ui-2.8.2.js"></script>
+<script src="../js/popup.js"></script>                                <!--引用页面js-->
+</html>
